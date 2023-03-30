@@ -2,7 +2,9 @@
 #define WIDGET_H
 
 #include <QWidget>
-#include <QtSerialPort>
+#include <QSerialPort>
+#include <QSerialPortInfo>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -16,8 +18,24 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
     QSerialPort *serial;
+    void UpdatePort();
+    QStringList oldPortStringList;
+    QTimer *timer;
+
+
+
+private slots:
+    void on_openserialbtn_clicked();
+
+
+
+    void on_sendbtn_clicked();
+
+
 
 private:
     Ui::Widget *ui;
+    QSerialPort SerialPort;
+
 };
 #endif // WIDGET_H
